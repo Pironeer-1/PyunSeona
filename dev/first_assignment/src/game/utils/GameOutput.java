@@ -8,7 +8,7 @@ public class GameOutput {
 
     public static void statusPrompt(int point) {
         System.out.println(point + "만큼의 스테이터스를 추가합니다. 체력, 공격력, 마법력 순으로 입력하세요");
-        System.out.println("(1 포인트 당 체력 = 3, 공격력 = 1, 마법력 = 1 증가)\n");
+        System.out.println("(1 포인트 당 체력 = 3, 공격력 = 1, 마법력 = 1 증가)");
         System.out.println("플레이어의 기본 스탯은 체력: 50, 공격력: 10, 마법력: 5입니다.");
     }
 

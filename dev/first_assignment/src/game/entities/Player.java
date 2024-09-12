@@ -1,21 +1,23 @@
 package game.entities;
 
 import game.utils.GameOutput;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.util.Random;
 
 public class Player {
     private int hp = 50;
     private int ad = 10;
     private int ap = 5;
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public void statusSet(int point) {
-        Scanner scanner = new Scanner(System.in);
         GameOutput.statusPrompt(point);
 
         while (true) {
             try {
-                String input = scanner.nextLine();
+                String input = br.readLine();
                 String[] inputs = input.split(" ");
 
                 int hpIncrease = Integer.parseInt(inputs[0]);
@@ -31,9 +33,10 @@ public class Player {
                 } else {
                     GameOutput.invalidPointsMessage(point);
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 GameOutput.invalidInputMessage();
-                scanner.next();
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                GameOutput.invalidInputMessage();
             }
         }
     }
@@ -75,15 +78,14 @@ public class Player {
     }
 
     public void attack(Enemy enemy, int playerIndex) {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             GameOutput.actionPrompt(playerIndex + 1);
-            String input = scanner.nextLine();
-            if (input.equals("exit")) {
-                GameOutput.exitMessage();
-                System.exit(0);
-            }
             try {
+                String input = br.readLine();
+                if (input.equals("exit")) {
+                    GameOutput.exitMessage();
+                    System.exit(0);
+                }
                 int action = Integer.parseInt(input);
                 if (action == 1) {
                     checkStatus(enemy);
@@ -98,6 +100,8 @@ public class Player {
                     GameOutput.invalidActionMessage();
                 }
                 break;
+            } catch (IOException e) {
+                GameOutput.invalidInputMessage();
             } catch (NumberFormatException e) {
                 GameOutput.invalidInputMessage();
             }
@@ -108,4 +112,3 @@ public class Player {
         return hp;
     }
 }
-

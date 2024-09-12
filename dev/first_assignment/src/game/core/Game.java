@@ -5,10 +5,10 @@ import game.entities.Enemy;
 import game.utils.GameOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Random;
-
-import java.util.InputMismatchException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 public class Game {
     private int statusPoint = 13; // 기본포인트 13
@@ -17,12 +17,12 @@ public class Game {
 
     //setPlayers : player 수에 맞게 초기값 세팅
     public void setPlayers() {
-        Scanner scanner = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
             try {
                 System.out.print("플레이어 인원을 정하세요: ");
-                int list_num = scanner.nextInt();
+                int list_num = Integer.parseInt(br.readLine());
 
                 if (list_num <= 0) {
                     System.out.println("플레이어 인원은 1 이상이어야 합니다. 다시 입력해주세요.");
@@ -36,9 +36,10 @@ public class Game {
                 }
                 break;
 
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-                scanner.next();
+            } catch (IOException e) {
+                System.out.println("입력 오류가 발생했습니다.");
             }
         }
     }
