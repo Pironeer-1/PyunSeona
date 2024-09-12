@@ -1,4 +1,4 @@
-public class jumptojava_05 {
+/*public class jumptojava_05 {
 }
 //05장 객체 지향 프로그래밍
 //05-02 클래스

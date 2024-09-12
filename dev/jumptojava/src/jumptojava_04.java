@@ -1,4 +1,4 @@
-public class jumptojava_04 {
+/*public class jumptojava_04 {
 }
 
 //04장 제어문 이해하기

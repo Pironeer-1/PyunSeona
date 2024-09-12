@@ -1,5 +1,5 @@
 //03장 자바의 기초 - 자료형
-
+/*
 public class jumptojava_03 {
 }
 
