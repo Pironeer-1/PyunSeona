@@ -1,9 +1,10 @@
 // 02-01 자바 코드의 구조 살펴보기
-
+/*
 // 현재 클래스 블록
 public class jumptojava_02 {
-
-    /* 메서드 블록 */
+*/
+/*
+    메서드 블록
     [public|private|protected] [static] (리턴자료형|void) 메서드명1(입력자료형 매개변수, ...) {
         명령문(statement);
         ...
@@ -13,6 +14,8 @@ public class jumptojava_02 {
         this.message = message;
     } // 생성자. 속성 초기화 용도.
 }
+
+*/
 
 // 02-02 변수와 자료형
 /*
