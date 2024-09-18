@@ -15,7 +15,13 @@ public class Comment {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Comment(Long id, String content, Long topicId, Long parentId, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Comment(
+            Long id,
+            String content,
+            Long topicId,
+            Long parentId,
+            LocalDateTime createdAt,
+            LocalDateTime updatedAt) {
         this.id = id;
         this.content = content;
         this.topicId = topicId;
@@ -24,5 +30,10 @@ public class Comment {
         this.updatedAt = updatedAt;
     }
 
+    public Comment update(CommentUpdateRequest request) {
+        this.content = request.content();
+        this.updatedAt = LocalDateTime.now();
+        return this;
+    }
 }
 

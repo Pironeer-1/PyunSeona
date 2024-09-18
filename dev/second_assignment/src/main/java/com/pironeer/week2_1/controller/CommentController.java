@@ -1,6 +1,7 @@
 package com.pironeer.week2_1.controller;
 
 import com.pironeer.week2_1.dto.request.CommentCreateRequest;
+import com.pironeer.week2_1.dto.request.CommentUpdateRequest;
 import com.pironeer.week2_1.dto.response.CommentResponse;
 import com.pironeer.week2_1.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,6 +43,12 @@ public class CommentController {
     @GetMapping
     public ResponseEntity<List<CommentResponse>> getAllComments() {
         return ResponseEntity.ok(commentService.findAll());
+    }
+
+    @Operation(summary = "댓글 수정", description = "특정 댓글을 수정합니다.")
+    @PutMapping("/{id}")
+    public ResponseEntity<CommentResponse> updateComment(@PathVariable Long id, @RequestBody CommentUpdateRequest request) {
+        return ResponseEntity.ok(commentService.update(id, request));
     }
 }
 

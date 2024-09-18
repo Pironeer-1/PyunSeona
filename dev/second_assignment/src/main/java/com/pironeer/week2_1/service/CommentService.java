@@ -1,6 +1,7 @@
 package com.pironeer.week2_1.service;
 
 import com.pironeer.week2_1.dto.request.CommentCreateRequest;
+import com.pironeer.week2_1.dto.request.CommentUpdateRequest;
 import com.pironeer.week2_1.dto.response.CommentResponse;
 import com.pironeer.week2_1.mapper.CommentMapper;
 import com.pironeer.week2_1.repository.CommentRepository;
@@ -38,6 +39,14 @@ public class CommentService {
         return comments.stream()
                 .map(CommentResponse::of)
                 .collect(Collectors.toList());
+    }
+
+    public CommentResponse update(Long id, CommentUpdateRequest request) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("COMMENT NOT FOUND"));
+        comment.update(request);
+        commentRepository.save(comment);
+        return CommentResponse.of(comment);
     }
 }
 
