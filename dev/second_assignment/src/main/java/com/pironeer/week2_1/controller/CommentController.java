@@ -37,6 +37,12 @@ public class CommentController {
     public ResponseEntity<List<CommentResponse>> getCommentsByTopicId(@PathVariable Long topicId) {
         return ResponseEntity.ok(commentService.findByTopicId(topicId));
     }
+
+    @Operation(summary = "모든 댓글 조회", description = "모든 댓글을 조회합니다.")
+    @GetMapping
+    public ResponseEntity<List<CommentResponse>> getAllComments() {
+        return ResponseEntity.ok(commentService.findAll());
+    }
 }
 
 

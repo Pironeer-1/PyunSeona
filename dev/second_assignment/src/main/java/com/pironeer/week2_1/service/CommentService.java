@@ -32,6 +32,13 @@ public class CommentService {
                 .map(CommentResponse::of)
                 .collect(Collectors.toList());
     }
+
+    public List<CommentResponse> findAll() {
+        List<Comment> comments = commentRepository.findAll();
+        return comments.stream()
+                .map(CommentResponse::of)
+                .collect(Collectors.toList());
+    }
 }
 
 

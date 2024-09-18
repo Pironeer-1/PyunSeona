@@ -4,6 +4,7 @@ import com.pironeer.week2_1.repository.domain.Comment;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,10 @@ public class CommentRepository {
         return commentMap.values().stream()
                 .filter(comment -> topicId.equals(comment.getTopicId()))
                 .collect(Collectors.toList());
+    }
+
+    public List<Comment> findAll() {
+        return new ArrayList<>(commentMap.values());
     }
 }
 
