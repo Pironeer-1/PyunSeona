@@ -1,4 +1,3 @@
-// CommentMapper.java
 package com.pironeer.week2_1.mapper;
 
 import com.pironeer.week2_1.dto.request.CommentCreateRequest;
@@ -13,3 +12,4 @@ public class CommentMapper {
                 .build();
     }
 }
+
