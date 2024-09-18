@@ -8,6 +8,9 @@ import com.pironeer.week2_1.repository.domain.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -22,8 +25,14 @@ public class CommentService {
                 .orElseThrow(() -> new RuntimeException("COMMENT NOT FOUND"));
         return CommentResponse.of(comment);
     }
-}
 
+    public List<CommentResponse> findByTopicId(Long topicId) {
+        List<Comment> comments = commentRepository.findByTopicId(topicId);
+        return comments.stream()
+                .map(CommentResponse::of)
+                .collect(Collectors.toList());
+    }
+}
 
 
 
