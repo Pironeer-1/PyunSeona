@@ -18,6 +18,7 @@ public class CommentRepository {
     private final Map<Long, Comment> commentMap = new HashMap<>();
 
     public void save(Comment comment) {
+        Assert.notNull(comment, "Comment must not be null");
         if(comment.getId() == null) {
             Long id = commentIdxGenerator.incrementAndGet();
             comment.setId(id);
@@ -28,12 +29,12 @@ public class CommentRepository {
     }
 
     public Optional<Comment> findById(Long id) {
-        Assert.notNull(id, "ID MUST NOT BE NULL");
+        Assert.notNull(id, "ID must not be null");
         return Optional.ofNullable(commentMap.get(id));
     }
 
     public List<Comment> findByTopicId(Long topicId) {
-        Assert.notNull(topicId, "TOPIC ID MUST NOT BE NULL");
+        Assert.notNull(topicId, "Topic ID must not be null");
         return commentMap.values().stream()
                 .filter(comment -> topicId.equals(comment.getTopicId()))
                 .collect(Collectors.toList());
@@ -41,6 +42,11 @@ public class CommentRepository {
 
     public List<Comment> findAll() {
         return new ArrayList<>(commentMap.values());
+    }
+
+    public void deleteById(Long id) {
+        Assert.notNull(id, "ID must not be null");
+        commentMap.remove(id);
     }
 }
 

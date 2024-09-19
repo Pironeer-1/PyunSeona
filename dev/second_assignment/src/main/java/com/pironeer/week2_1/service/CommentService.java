@@ -8,10 +8,10 @@ import com.pironeer.week2_1.repository.CommentRepository;
 import com.pironeer.week2_1.repository.domain.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -47,6 +47,11 @@ public class CommentService {
         comment.update(request);
         commentRepository.save(comment);
         return CommentResponse.of(comment);
+    }
+
+    public void deleteById(Long id) {
+        Assert.notNull(id, "ID must not be null");
+        commentRepository.deleteById(id);
     }
 }
 

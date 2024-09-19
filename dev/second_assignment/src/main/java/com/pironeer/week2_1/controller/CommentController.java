@@ -50,6 +50,13 @@ public class CommentController {
     public ResponseEntity<CommentResponse> updateComment(@PathVariable Long id, @RequestBody CommentUpdateRequest request) {
         return ResponseEntity.ok(commentService.update(id, request));
     }
+
+    @Operation(summary = "댓글 삭제", description = "특정 ID의 댓글을 삭제합니다.")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
+        commentService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
