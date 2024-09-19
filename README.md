@@ -25,3 +25,11 @@ https://thinkable-trade-b3d.notion.site/8b004122c7cd49ea8db1f08fea3eca19?pvs=4
 
 ### 과제 공부 노션 링크
 https://thinkable-trade-b3d.notion.site/2-_-10507fff7cad80049582e20f18f6d0cf?pvs=4
+
+## Swagger 캡쳐 사진
+<img width="1007" alt="스크린샷 2024-09-19 오전 9 44 11" src="https://github.com/user-attachments/assets/60c9a0e1-cb04-4336-8771-63d24f0d9d0c">
+
+## Swagger 토글 열어놓고 실행한 전체 캡쳐 사진
+- second_assignment > Swagger_capture 디렉토리 안에 넣어놓았습니다
+1) Swagger_Comment : 댓글 토글 열어놓은 전체캡쳐사진
+2) Swagger_Topic : 게시글 토글 열어놓은 전체캡쳐사진
