@@ -4,6 +4,10 @@ package com.pironeer.week2_1.member.service;
 import com.pironeer.week2_1.global.exception.CustomException;
 import com.pironeer.week2_1.global.exception.ErrorCode;
 
+//JwtToken 관련 Import 추가
+import com.pironeer.week2_1.global.dto.response.JwtTokenSet;
+import com.pironeer.week2_1.global.service.AuthService;
+
 import com.pironeer.week2_1.global.dto.response.result.SingleResult;
 import com.pironeer.week2_1.global.service.ResponseService;
 import com.pironeer.week2_1.member.dto.request.MemberCreateReq;
@@ -18,8 +22,9 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final AuthService authService;
 
-    public SingleResult<String> register(MemberCreateReq req) {
+    public SingleResult<JwtTokenSet> register(MemberCreateReq req) {
         // 아이디 중복 체크
         if (memberRepository.existByMemberId(req.memberId())) {
             throw new CustomException(ErrorCode.USER_ALREADY_EXIST);
@@ -32,11 +37,12 @@ public class MemberService {
                 .build();
         newMember = memberRepository.save(newMember);
 
-        // 성공 메시지 반환하기
-        return ResponseService.getSingleResult("Registration successful");
+        JwtTokenSet jwtTokenSet = authService.generateToken(newMember.getId());
+
+        return ResponseService.getSingleResult(jwtTokenSet);
     }
 
-    public SingleResult<String> login(MemberLoginReq req) {
+    public SingleResult<JwtTokenSet> login(MemberLoginReq req) {
         Member member = memberRepository.findByMemberId(req.memberId())
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_EXIST));
 
@@ -44,7 +50,10 @@ public class MemberService {
         if (!member.getPassword().equals(req.password())) {
             throw new CustomException(ErrorCode.USER_WRONG_PASSWORD);
         }
-        return ResponseService.getSingleResult("Login successful");
+
+        JwtTokenSet jwtTokenSet = authService.generateToken(member.getId());
+
+        return ResponseService.getSingleResult(jwtTokenSet);
     }
 }
 

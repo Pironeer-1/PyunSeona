@@ -1,5 +1,6 @@
 package com.pironeer.week2_1.member.controller;
 
+import com.pironeer.week2_1.global.dto.response.JwtTokenSet;
 import com.pironeer.week2_1.global.dto.response.SuccessResponse;
 import com.pironeer.week2_1.global.dto.response.result.SingleResult;
 import com.pironeer.week2_1.member.dto.request.MemberCreateReq;
@@ -24,15 +25,15 @@ public class MemberController {
 
     @PostMapping
     @Operation(summary = "회원가입")
-    public SuccessResponse<SingleResult<String>> register(@Valid @RequestBody MemberCreateReq req) {
-        SingleResult<String> result = memberService.register(req);
+    public SuccessResponse<SingleResult<JwtTokenSet>> register(@Valid @RequestBody MemberCreateReq req) {
+        SingleResult<JwtTokenSet> result = memberService.register(req);
         return SuccessResponse.ok(result);
     }
 
     @PostMapping("/login")
     @Operation(summary = "로그인")
-    public SuccessResponse<SingleResult<String>> login(@Valid @RequestBody MemberLoginReq req) {
-        SingleResult<String> result = memberService.login(req);
+    public SuccessResponse<SingleResult<JwtTokenSet>> login(@Valid @RequestBody MemberLoginReq req) {
+        SingleResult<JwtTokenSet> result = memberService.login(req);
         return SuccessResponse.ok(result);
     }
 }
