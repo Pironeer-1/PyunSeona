@@ -1,5 +1,9 @@
 package com.pironeer.week2_1.board.service;
 
+//exception 추가
+import com.pironeer.week2_1.global.exception.CustomException;
+import com.pironeer.week2_1.global.exception.ErrorCode;
+
 import com.pironeer.week2_1.global.dto.response.result.ListResult;
 import com.pironeer.week2_1.global.dto.response.result.SingleResult;
 import com.pironeer.week2_1.global.service.ResponseService;
@@ -26,8 +30,9 @@ public class BoardService {
     }
 
     public SingleResult<BoardResponse> findById(Long id) {
-        Board board = boardRepository.findById(id).orElse(null);
-        BoardResponse boardResponse = board != null ? BoardResponse.of(board) : null;
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.BOARD_NOT_FOUND));
+        BoardResponse boardResponse = BoardResponse.of(board);
         return ResponseService.getSingleResult(boardResponse);
     }
 
@@ -38,12 +43,10 @@ public class BoardService {
     }
 
     public BoardResponse update(BoardUpdateRequest request) {
-        Board board = boardRepository.findById(request.id()).orElse(null);
-        if (board != null) {
-            boardRepository.save(board.update(request));
-            return BoardResponse.of(board);
-        }
-        return null;
+        Board board = boardRepository.findById(request.id())
+                .orElseThrow(() -> new RuntimeException("TOPIC NOT FOUND"));
+        boardRepository.save(board.update(request));
+        return BoardResponse.of(board);
     }
 
     public Long deleteById(Long id) {
