@@ -33,3 +33,11 @@ https://thinkable-trade-b3d.notion.site/2-_-10507fff7cad80049582e20f18f6d0cf?pvs
 - second_assignment > Swagger_capture 디렉토리 안에 넣어놓았습니다
 1) Swagger_Comment : 댓글 토글 열어놓은 전체캡쳐사진
 2) Swagger_Topic : 게시글 토글 열어놓은 전체캡쳐사진
+
+## 3주차 과제 : 나만의 템플릿코드 만들기
+
+1) 구현한 프로젝트는 dev > third_assignment > week2_1 입니다.
+2) dev > third_assignment > week2_1 > README.md에 과제 내용 기록해두었습니다.
+    <img width="311" alt="스크린샷 2024-09-27 오후 9 30 17" src="https://github.com/user-attachments/assets/40198671-2a22-4549-bf20-d791d3012dcf">
+2) dev > third_assignment에 "sql lv3_10문제 인증.png" 캡쳐 첨부해두었습니다.
+   <img width="873" alt="스크린샷 2024-09-27 오후 9 31 27" src="https://github.com/user-attachments/assets/1056517e-7e87-455f-a00d-ce87c0fa992b">
